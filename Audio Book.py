@@ -1,11 +1,28 @@
-# A python script that can be used to convert a pdf into an audiobook
+# Designed and Developed by Muhammad Umair Yaqub.
+# Made in P A K I S T A N
 
-import pyttsx3, PyPDF2
-pdfReader = PyPDF2.PdfFileReader(open('file.pdf', 'rb'))
+# Import necessary modules
+import pyttsx3
+import PyPDF2
+
+# Open the PDF file in read-binary mode
+pdfFile = open('file.pdf', 'rb')
+
+# Create a PdfFileReader object to read the PDF file
+pdfReader = PyPDF2.PdfFileReader(pdfFile)
+
+# Initialize the pyttsx3 text-to-speech engine
 speaker = pyttsx3.init()
-for page_num in range(pdfReader.numPages):
-    text = pdfReader.getPage(page_num).extractText()
+
+# Loop through each page in the PDF file
+for pageNum in range(pdfReader.numPages):
+
+    # Extract the text from the current page
+    text = pdfReader.getPage(pageNum).extractText()
+
+    # Use the speaker to read the text out loud
     speaker.say(text)
     speaker.runAndWait()
-    speaker.runAndWait()
+
+# Stop the speaker from speaking
 speaker.stop()
